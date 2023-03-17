@@ -9,11 +9,12 @@
 .wrapper{
     width: 100%;
     height: 100vh;
-    background-color: #80fed5;
+    background-color: #3BDB00;
 }
 
 header,footer {
-    background-color: white;
+    background-color: #012340;
+    color: white;
     height: 80px;
 }
 
@@ -42,6 +43,6 @@ main{
 }
 
 .safe{
-    background-color: #16166D;
+    background-color: #012340;
     color: white;
 }
