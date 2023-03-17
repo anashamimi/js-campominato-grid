@@ -1,4 +1,4 @@
-<html lang="en">    
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -19,9 +19,45 @@
 
 
 <body>
-    
 
-    
+    <div class="wrapper">
+        <header>
+            <div class="container d-flex justify-content-between align-items-center h-100">
+                <div class="d-flex gap-4">
+                    <img src="https://cdn-icons-png.flaticon.com/512/8346/8346425.png" alt="">
+                    <h1>Campo Minato</h1>
+                </div>
+
+                <div>
+                    <form id="levelForm" class="d-flex align-items-center gap-4">
+                        <div>
+                            <label for="level">Livello</label>
+                            <select name="level" id="level">
+                                <option value="easy">Babbano</option>
+                                <option value="medium">Sei un figo</option>
+                                <option value="hard">Chaddone</option>
+                            </select>
+                        </div>
+
+                        <button class="btn btn-warning" type="submit">Play</button>
+                    </form>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="container d-flex justify-content-center align-items-center flex-wrap h-100">
+                <div id="playground" class="d-none">
+                </div>
+                <h3 id="score" class="w-100 text-center">Seleziona la difficoltà e premi Play</h3>
+            </div>
+        </main>
+        <footer>
+            <div class="container h-100 d-flex align-items-center fs-4">
+                Made with &hearts; by classe#92
+            </div>
+        </footer>
+    </div>
+
     <script type="text/javascript" src="./js/script.js"></script>
     <script type="text/javascript" src="./js/utility.js"></script>
 </body>

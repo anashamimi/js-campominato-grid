@@ -5,3 +5,43 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.wrapper{
+    width: 100%;
+    height: 100vh;
+    background-color: #80fed5;
+}
+
+header,footer {
+    background-color: white;
+    height: 80px;
+}
+
+header img{
+    width: 50px;
+}
+
+main{
+    height: calc(100% - 160px);
+    overflow-y: auto;
+}
+
+#playground{
+    width: 500px;
+    height: 500px;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.square{
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.safe{
+    background-color: #16166D;
+    color: white;
+}
