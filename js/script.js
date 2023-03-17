@@ -69,9 +69,15 @@ function play(e) {
     //ciclo per il numero di celle genero cella
     for (let i = 1; i <= squareNumbers; i++) {
         const square = drawSquare(i, squareperRow);
+
         square.addEventListener('click', function() {
-            square.classList.add('safe');
-        })
+
+            if (bombs.includes(i)) {
+                square.classList.add('mine');
+            } else {
+                square.classList.add('safe');
+            }
+        });
 
 
         playground.appendChild(square);
