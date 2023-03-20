@@ -15,7 +15,7 @@ function drawSquare(index, numSquares) {
     square.classList.add('square');
     square.style.width = `calc(100% / ${numSquares})`;
     square.style.height = square.style.width;
-    square.innerHTML = index;
+    square.innerHTML = `<span>${index}</span>`;
     return square;
 }
 
@@ -23,7 +23,7 @@ function drawSquare(index, numSquares) {
 //Funzione per generare l'array delle bombe
 function generateBombs(bombnum, numsquares) {
     const bombs = [];
-    while (bombs.length <= 16) {
+    while (bombs.length < 16) {
         const bomb = getRndNumber(1, numsquares);  
         if(!bombs.includes(bomb)) {
             bombs.push(bomb); 
@@ -32,13 +32,28 @@ function generateBombs(bombnum, numsquares) {
     return bombs;
 }
 
+
+//Funzione per mostrare tutte le mine dopo che si perde
+function showMines(bombs) {
+    const squares = document.querySelectorAll('.square');
+    squares.forEach(square => {
+      if (bombs.includes(parseInt(square.innerText))) {
+        square.classList.add('mine');
+      }
+    });
+  }
+
 function play(e) {
     e.preventDefault();
     const playground = document.getElementById('playground');
     playground.classList.remove('d-none');
     playground.innerHTML = '';
     const NUM_BOMBS = 16;
-    document.getElementById('score').classList.add('d-none');
+    const score = document.getElementById('score');
+    let risultato = 0;
+    let gameOver = false;
+    let maxScore = score - NUM_BOMBS;
+
     //Prendo il livello
     const level = document.getElementById('level').value;
     console.log(level);
@@ -70,16 +85,43 @@ function play(e) {
     for (let i = 1; i <= squareNumbers; i++) {
         const square = drawSquare(i, squareperRow);
 
-        square.addEventListener('click', function() {
+        square.addEventListener('click', function clickHandler() {
 
+            if (gameOver) return; // blocca il gioco se gameOver è true
+            
             if (bombs.includes(i)) {
                 square.classList.add('mine');
-            } else {
-                square.classList.add('safe');
-            }
-        });
+                
+                // blocca il gioco
+                const block = document.querySelectorAll('.square');
+                block.forEach(square => square.removeEventListener('click', clickHandler));
+                
+                gameOver = true;        
 
+                // mostra tutte le mine
+                showMines(bombs); 
+                score.innerHTML = `BOOOM!! Hai totalizzato ${risultato} punti`;  
+
+                       
+            
+            } else {
+                square.classList.add('safe');                 
+                risultato ++;
+
+                if (risultato === maxScore) {
+                    score.innerHTML = `Congratulazione hai ottenuto il punteggio massimo. Come hai fatto :O`;
+                } else{
+                    score.innerHTML = `<br>Il tuo punteggio è ${risultato}`;
+                }
+            }
+
+            
+        
+            // non permette di selezionare più di una volta lo stesso quadrato
+            square.removeEventListener('click', clickHandler);
+        });
 
         playground.appendChild(square);
     }
+    
 }

@@ -33,6 +33,7 @@ main{
     display: flex;
     flex-flow: row wrap;
     border: 4px solid black;
+    justify-content: end;
 }
 
 .square{
@@ -41,6 +42,11 @@ main{
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    flex-grow: 1;
+}
+
+.square span{
+    opacity: 0;
 }
 
 .safe{
